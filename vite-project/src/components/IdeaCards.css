@@ -1,89 +1,114 @@
+/* Layout & Positioning ----------------------------------- */
+.cards-container {
+  display: grid;
+  width: 100%;
+  max-width: 1000px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.cards-btns-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.create-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Background, Color, Border -------------------------------- */
 .card {
   border: 1px solid #341bbe;
+  background-color: #dcd7fb;
   color: black;
   border-radius: 1rem;
   padding: 1rem;
   height: auto;
-  background-color: #dcd7fb;
 }
 
 .card-title {
-  padding-bottom: 1rem;
   color: #341bbe;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   text-align: left;
   font-style: italic;
+  padding-bottom: 1rem;
 }
 
 .card-details {
-  font-size: 0.8rem;
+  font-size: 1rem;
+  color: rgb(80, 80, 80);
   text-align: left;
   padding-bottom: 1rem;
-  color: rgb(80, 80, 80);
   white-space: pre-wrap; /* Ensures line breaks and spaces are preserved */
   word-wrap: break-word; /* Optional: Prevents long words from breaking layout */
 }
 
 .textarea-title {
-  padding-bottom: 1rem;
-  border-radius: 0.5rem;
-  color: #341bbe;
-  width: 100%;
   font-size: 1.2rem;
+  color: #341bbe;
   text-align: left;
   font-style: italic;
+  padding-bottom: 1rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  min-height: 5rem;
   resize: none;
   resize: vertical;
-  min-height: 5rem;
 }
 
 .textarea-details {
   font-size: 0.8rem;
-  border-radius: 0.5rem;
-
-  width: 100%;
+  color: rgb(80, 80, 80);
   text-align: left;
   padding-bottom: 1rem;
-  color: rgb(80, 80, 80);
+  width: 100%;
+  border-radius: 0.5rem;
+  min-height: 15rem;
   resize: none;
   resize: vertical;
-  min-height: 15rem;
 }
 
 .character-limit-surpassed {
-  padding: 0;
-  margin: 0;
   font-weight: bolder;
-  color: rgb(171, 24, 24);
   font-size: 1.2rem;
+  color: rgb(171, 24, 24);
   text-align: right;
+  padding: 0;
+  margin: 0;
   margin-bottom: 0.5rem;
 }
+
 .character-limit-close {
+  font-size: 1rem;
+  color: rgb(131, 119, 34);
+  text-align: right;
   padding: 0;
   margin: 0;
-  color: rgb(131, 119, 34);
-  font-size: 1rem;
-  text-align: right;
   margin-bottom: 0.5rem;
 }
+
 .character-limit-ok {
+  font-size: 0.75rem;
+  color: green;
+  text-align: right;
   padding: 0;
   margin: 0;
-  color: green;
-  font-size: 0.75rem;
-  text-align: right;
   margin-bottom: 0.5rem;
 }
 
 .card-dates {
-  font-size: xx-small;
+  font-size: small;
   color: rgb(128, 128, 128);
   text-align: right;
   margin-bottom: 0.5rem;
 }
 
-/* BUTTONS -------------------------------------------- */
+/* Buttons --------------------------------------------------- */
 .btn {
   all: unset; /* Removes all default styling */
   cursor: pointer;
@@ -93,11 +118,6 @@
   font-size: 16px;
   text-align: center;
   transition: background-color 0.3s ease;
-}
-.cards-btns-container {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
 }
 
 .deleting-btn {
@@ -116,6 +136,7 @@
 .editing-btn {
   background-color: #ffe8e8;
 }
+
 .editing-btn:hover {
   background-color: #c991da;
 }
@@ -124,13 +145,7 @@
   background-color: #38d47e;
 }
 
-.create-card-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
+/* Create Card Container ------------------------------------- */
 .create-outline {
   background-color: #7b428d;
   font-size: 4rem;
@@ -151,6 +166,7 @@
   border-radius: 1rem;
   height: 100%;
 }
+
 .create-btn:hover {
   background-color: #ab79ba;
 }

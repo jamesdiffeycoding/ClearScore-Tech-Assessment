@@ -6,9 +6,7 @@ export default function App() {
     <div className="app">
       <header className="app-header">ClearScore Idea Board</header>
       <main className="app-main">
-        <section className="app-cards-container">
-          <IdeaCards />
-        </section>
+        <IdeaCards />
       </main>
     </div>
   );

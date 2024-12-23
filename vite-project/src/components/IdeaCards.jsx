@@ -1,6 +1,7 @@
 import "./IdeaCards.css";
 import { useState, useEffect } from "react";
-import { DUMMY_DATA, getFormattedDate } from "../helpers.js";
+import { DUMMY_DATA, formatDate } from "../helpers.js";
+import SortButtons from "./SortButtons.jsx";
 
 export default function IdeaCards() {
   /* ========== CONSTS FOR DATA RELATED TO CHARACTER LIMITS ========== */
@@ -18,9 +19,10 @@ export default function IdeaCards() {
     OK: "character-limit-ok",
   };
 
-  /* =========================== STATES ============================= */
+  /* =============================================================== */
+  /* =========================== STATES ============================ */
   // ideas that are mapped on the screen
-  const [ideasDisplayed, setIdeasDisplayed] = useState([]);
+  const [sortedIdeas, setSortedIdeas] = useState([]);
 
   // index of the card being edited, null if no card is being edited
   const [indexBeingEdited, setIndexBeingEdited] = useState(null);
@@ -38,23 +40,28 @@ export default function IdeaCards() {
   });
 
   // boolean to check if all character limits are valid, used to prevent updating with invalid lengths
-  const [allLengthsValid, setAllLengthsValid] = useState(false);
+  const [lengthsAreValid, setlengthsAreValid] = useState(false);
 
+  // state for organising which sorting function to use, set to nothing by default
+  const [sortBy, setSortBy] = useState(""); // options: createdAt, updateAt, title
+
+  /* =============================================================== */
   /* ======================== USE EFFECTS ========================== */
+
   // local storage useEffect to load previous or dummy data
   useEffect(() => {
-    const locallyStoredIdeas = localStorage.getItem("ideasDisplayed");
+    const locallyStoredIdeas = localStorage.getItem("sortedIdeas");
     if (locallyStoredIdeas) {
-      setIdeasDisplayed(JSON.parse(locallyStoredIdeas));
+      setSortedIdeas(JSON.parse(locallyStoredIdeas));
     } else {
-      setIdeasDisplayed(DUMMY_DATA);
+      setSortedIdeas(DUMMY_DATA);
     }
   }, []);
 
   // local storage useEffect to save data whenever changes are made
   useEffect(() => {
-    localStorage.setItem("ideasDisplayed", JSON.stringify(ideasDisplayed));
-  }, [ideasDisplayed]);
+    localStorage.setItem("sortedIdeas", JSON.stringify(sortedIdeas));
+  }, [sortedIdeas]);
 
   // char limit useEffects -------------------------
   // update titleLengthClass
@@ -99,24 +106,25 @@ export default function IdeaCards() {
     }
   }, [editedInfo.details]);
 
-  // update allLengthsValid
+  // update lengthsAreValid
   useEffect(() => {
-    setAllLengthsValid(
+    setlengthsAreValid(
       editedInfoLengthClasses.title !== CHAR_LIMIT_CLASSES.SURPASSED &&
         editedInfoLengthClasses.details !== CHAR_LIMIT_CLASSES.SURPASSED
     );
   }, [editedInfo]);
 
-  /* ===================== CRUD FUNCTIONS ======================= */
+  /* ============================================================== */
+  /* ===================== CRUD FUNCTIONS ========================= */
   function createNewIdea() {
     const newIdea = {
-      id: ideasDisplayed.length,
+      id: sortedIdeas.length,
       title: "New Idea",
       details: "Details",
-      createdAt: getFormattedDate(new Date()),
-      lastUpdated: "",
+      createdAt: new Date(),
+      lastUpdated: new Date(),
     };
-    setIdeasDisplayed([...ideasDisplayed, newIdea]);
+    setSortedIdeas([...sortedIdeas, newIdea]);
     editCard(null);
   }
 
@@ -131,8 +139,8 @@ export default function IdeaCards() {
     } else {
       setEditedInfo((prev) => ({
         ...prev,
-        title: ideasDisplayed[index].title,
-        details: ideasDisplayed[index].details,
+        title: sortedIdeas[index].title,
+        details: sortedIdeas[index].details,
       }));
     }
   }
@@ -144,7 +152,7 @@ export default function IdeaCards() {
   }
 
   function updateValuesByIndex(index, newInformation) {
-    if (!allLengthsValid) {
+    if (!lengthsAreValid) {
       // alerts use if max character lengths are exceeded
       alert("Please make sure your data is within the character limits.");
       return;
@@ -152,32 +160,67 @@ export default function IdeaCards() {
     // reset indexBeingEdited to null
     editCard(null);
     // update values in a copy of the array
-    const ideasDisplayedCopy = [...ideasDisplayed];
-    ideasDisplayedCopy[index].title = newInformation.title;
-    ideasDisplayedCopy[index].details = newInformation.details;
-    ideasDisplayedCopy[index].lastUpdated = getFormattedDate(new Date());
-    // set the ideasDisplayed to the updated array
-    setIdeasDisplayed(ideasDisplayedCopy);
+    const sortedIdeasCopy = [...sortedIdeas];
+    sortedIdeasCopy[index].title = newInformation.title;
+    sortedIdeasCopy[index].details = newInformation.details;
+    sortedIdeasCopy[index].lastUpdated = new Date();
+    // set the sortedIdeas to the updated array
+    setSortedIdeas(sortedIdeasCopy);
   }
 
   function deleteByIndex(index) {
-    setIdeasDisplayed([
-      ...ideasDisplayed.slice(0, index),
-      ...ideasDisplayed.slice(index + 1, ideasDisplayed.length),
+    setSortedIdeas([
+      ...sortedIdeas.slice(0, index),
+      ...sortedIdeas.slice(index + 1, sortedIdeas.length),
     ]);
     editCard(null);
   }
 
-  /* ===================== REUSABLE COMPONENTS ======================= */
+  /* ============================================================== */
+  /* ===================== SORT FUNCTION ========================= */
+  function sortIdeasByTagAndDirection(criteria, isAscending) {
+    // copy sortedIdeas array
+    const sortedIdeasCopy = [...sortedIdeas];
+    switch (criteria) {
+      case "createdAt":
+        sortedIdeasCopy.sort((a, b) => {
+          return isAscending
+            ? new Date(b.createdAt) - new Date(a.createdAt)
+            : new Date(a.createdAt) - new Date(b.createdAt);
+        });
+        break;
+      case "lastUpdated":
+        sortedIdeasCopy.sort((a, b) => {
+          console.log(a.lastUpdated - b.lastUpdated);
+          return isAscending
+            ? new Date(b.lastUpdated) - new Date(a.lastUpdated)
+            : new Date(a.lastUpdated) - new Date(b.lastUpdated);
+        });
+        break;
+      case "title":
+        sortedIdeasCopy.sort((a, b) => {
+          return isAscending
+            ? a.title.localeCompare(b.title)
+            : b.title.localeCompare(a.title);
+        });
+        break;
+      default:
+        return sortedIdeasCopy;
+    }
+    setSortedIdeas(sortedIdeasCopy);
+  }
+
+  /* ============================================================== */
+  /* =================== REUSABLE COMPONENTS ====================== */
   // renders buttons
   // toggles first button between "edit" and "confirm update" buttons depending on isEditing value.
-  // updates classnames and styles based on isEditing and allLengthsValid values to improve UX.
+  // updates classnames and styles based on isEditing and lengthsAreValid values to improve UX.
   const RenderButtons = (index, isEditing) => (
     <section className="cards-btns-container">
       <button
         className={`btn ${
           isEditing
-            ? allLengthsValid
+            ? lengthsAreValid
               ? "editing-confirmation-btn"
               : ""
             : "editing-btn"
@@ -228,45 +271,50 @@ export default function IdeaCards() {
     <img src="delete.svg" alt="delete trash can icon" height="10" width="15" />
   );
 
+  /* =============================================================== */
+  /* ======================== RENDERING ============================ */
   return (
     <>
-      {ideasDisplayed.map((storedIdea, currentCardIndex) => (
-        <div className="card" key={storedIdea.id}>
-          <section className="card-dates">
-            <div>Created: {storedIdea.createdAt}</div>
-            <div>Updated: {storedIdea.lastUpdated}</div>
-          </section>
+      <SortButtons sortIdeasByTagAndDirection={sortIdeasByTagAndDirection} />
+      <section className="cards-container">
+        {sortedIdeas.map((storedIdea, currentCardIndex) => (
+          <div className="card" key={storedIdea.id}>
+            <section className="card-dates">
+              <div>Created: {formatDate(storedIdea.createdAt)}</div>
+              <div>Updated: {formatDate(storedIdea.lastUpdated)}</div>
+            </section>
 
-          {indexBeingEdited === currentCardIndex ? (
-            <>
-              {RenderTextAreaAndCharCount(
-                "title",
-                CHAR_LENGTH_LIMITS.TITLE.MAX
-              )}
-              {RenderTextAreaAndCharCount(
-                "details",
-                CHAR_LENGTH_LIMITS.DETAILS.MAX
-              )}
-              {RenderButtons(currentCardIndex, true)}
-            </>
-          ) : (
-            <>
-              <div className="card-title">{storedIdea.title}</div>
-              <div className="card-details">{storedIdea.details}</div>
+            {indexBeingEdited === currentCardIndex ? (
+              <>
+                {RenderTextAreaAndCharCount(
+                  "title",
+                  CHAR_LENGTH_LIMITS.TITLE.MAX
+                )}
+                {RenderTextAreaAndCharCount(
+                  "details",
+                  CHAR_LENGTH_LIMITS.DETAILS.MAX
+                )}
+                {RenderButtons(currentCardIndex, true)}
+              </>
+            ) : (
+              <>
+                <div className="card-title">{storedIdea.title}</div>
+                <div className="card-details">{storedIdea.details}</div>
 
-              {RenderButtons(currentCardIndex, false)}
-            </>
-          )}
+                {RenderButtons(currentCardIndex, false)}
+              </>
+            )}
+          </div>
+        ))}
+
+        <div className="create-card-container">
+          <div className="create-outline">
+            <button className="create-btn" onClick={() => createNewIdea()}>
+              +
+            </button>
+          </div>
         </div>
-      ))}
-
-      <div className="create-card-container">
-        <div className="create-outline">
-          <button className="create-btn" onClick={() => createNewIdea()}>
-            +
-          </button>
-        </div>
-      </div>
+      </section>
     </>
   );
 }
