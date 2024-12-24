@@ -1,29 +1,34 @@
 export { DUMMY_DATA, formatDate };
 
+function dateCreator(minutesAgo) {
+  let currentDate = new Date();
+  currentDate.setMinutes(currentDate.getMinutes() - minutesAgo);
+  return currentDate;
+}
 const DUMMY_DATA = [
   {
     id: 0,
     title: "Click the plus icon to add a new idea!",
     details: "Let those good ideas find a place.",
     editing: false,
-    createdAt: new Date(), // Using standard Date format
-    lastUpdated: new Date(),
+    createdAt: dateCreator(3),
+    lastUpdated: dateCreator(3),
   },
   {
     id: 1,
     title: "Click the pencil to edit, or bin to delete cards!",
     details: "It is normal to have second thoughts!",
     editing: false,
-    createdAt: new Date(),
-    lastUpdated: new Date(),
+    createdAt: dateCreator(2),
+    lastUpdated: dateCreator(2),
   },
   {
     id: 2,
     title: "Sort the cards by their date or title!",
     details: "Or don't. It's your choice.",
     editing: false,
-    createdAt: new Date(),
-    lastUpdated: new Date(),
+    createdAt: dateCreator(1),
+    lastUpdated: dateCreator(1),
   },
 ];
 const formatDate = (date) => {

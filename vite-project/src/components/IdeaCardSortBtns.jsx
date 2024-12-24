@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./SortButtons.css"; // Assuming you're creating a separate CSS file
+import "./IdeaCardSortBtns.css"; // Assuming you're creating a separate CSS file
 
-export default function SortButtons({ sortIdeasByTagAndDirection }) {
+export default function IdeaCardSortBtns({ sortIdeasByTagAndDirection }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => setIsOpen(!isOpen);

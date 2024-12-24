@@ -1,7 +1,7 @@
 import "./IdeaCards.css";
 import { useState, useEffect } from "react";
 import { DUMMY_DATA, formatDate } from "../helpers.js";
-import SortButtons from "./SortButtons.jsx";
+import IdeaCardSortBtns from "./IdeaCardSortBtns.jsx";
 
 export default function IdeaCards() {
   /* ========== CONSTS FOR DATA RELATED TO CHARACTER LIMITS ========== */
@@ -41,9 +41,6 @@ export default function IdeaCards() {
 
   // boolean to check if all character limits are valid, used to prevent updating with invalid lengths
   const [lengthsAreValid, setlengthsAreValid] = useState(false);
-
-  // state for organising which sorting function to use, set to nothing by default
-  const [sortBy, setSortBy] = useState(""); // options: createdAt, updateAt, title
 
   /* =============================================================== */
   /* ======================== USE EFFECTS ========================== */
@@ -275,7 +272,9 @@ export default function IdeaCards() {
   /* ======================== RENDERING ============================ */
   return (
     <>
-      <SortButtons sortIdeasByTagAndDirection={sortIdeasByTagAndDirection} />
+      <IdeaCardSortBtns
+        sortIdeasByTagAndDirection={sortIdeasByTagAndDirection}
+      />
       <section className="cards-container">
         {sortedIdeas.map((storedIdea, currentCardIndex) => (
           <div className="card" key={storedIdea.id}>
