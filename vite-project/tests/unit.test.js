@@ -1,5 +1,5 @@
 // unit tests powered by vitest
-// run with npm run vitest
+// run with npm run test
 import { expect, expectTypeOf, test } from "vitest";
 import {
   DUMMY_IDEA_DATA,
