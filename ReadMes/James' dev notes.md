@@ -2,31 +2,31 @@
 
 Planning
 
-- Review readMe's and key files in the project (Y)
-- Listing all project requirements (Y)
-- Listing all assumptions made (Y)
-- Clarify tech requirements and priorities (Y)
+- Review readMe's and key files in the project (✔)
+- Listing all project requirements (✔)
+- Listing all assumptions made (✔)
+- Clarify tech requirements and priorities (✔)
 
 Basic Milestones
 
-- setting up new project with Vite (Y)
-- create basic dummyData for initial load (Y)
-- create basic card grid UI with responsiveness (Y)
-- adding Create functionality (Y)
-- adding Edit functionality with input fields (Y)
-- adding Delete functionality (Y)
-- improve UI (Y)
-- refactor code for clarity (Y)
-- add comments for readability (Y)
+- setting up new project with Vite (✔)
+- create basic dummyData for initial load (✔)
+- create basic card grid UI with responsiveness (✔)
+- adding Create functionality (✔)
+- adding Edit functionality with input fields (✔)
+- adding Delete functionality (✔)
+- improve UI (✔)
+- refactor code for clarity (✔)
+- add comments for readability (✔)
+- deploy site (✔)
 
 Stretch milestones
 
-- add character limits for title and details (Y)
-- store session data in local storage (Y)
+- add character limits for title and details (✔)
+- store session data in local storage (✔)
 
 PRIORITIES NOW
 
-- deploy
 - test suite with unit tests / other
 - check responsiveness,
 - focus title field when pressed,
