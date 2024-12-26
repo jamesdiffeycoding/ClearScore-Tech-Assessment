@@ -1,37 +1,39 @@
-export { DUMMY_DATA, formatDate };
+export { DUMMY_IDEA_DATA, formatDateForDisplay, dateAndTimeXMinutesAgo };
 
-function dateCreator(minutesAgo) {
+function dateAndTimeXMinutesAgo(minutesAgo) {
   let currentDate = new Date();
   currentDate.setMinutes(currentDate.getMinutes() - minutesAgo);
   return currentDate;
 }
-const DUMMY_DATA = [
+
+const DUMMY_IDEA_DATA = [
   {
     id: 0,
     title: "Click the plus icon to add a new idea!",
     details: "Let those good ideas find a place.",
     editing: false,
-    createdAt: dateCreator(3),
-    lastUpdated: dateCreator(3),
+    createdAt: dateAndTimeXMinutesAgo(3),
+    lastUpdated: dateAndTimeXMinutesAgo(3),
   },
   {
     id: 1,
     title: "Click the pencil to edit, or bin to delete cards!",
     details: "It is normal to have second thoughts!",
     editing: false,
-    createdAt: dateCreator(2),
-    lastUpdated: dateCreator(2),
+    createdAt: dateAndTimeXMinutesAgo(2),
+    lastUpdated: dateAndTimeXMinutesAgo(2),
   },
   {
     id: 2,
     title: "Sort the cards by their date or title!",
     details: "Or don't. It's your choice.",
     editing: false,
-    createdAt: dateCreator(1),
-    lastUpdated: dateCreator(1),
+    createdAt: dateAndTimeXMinutesAgo(1),
+    lastUpdated: dateAndTimeXMinutesAgo(1),
   },
 ];
-const formatDate = (date) => {
+
+function formatDateForDisplay(date) {
   if (date === "") return "";
 
   // Define the options for formatting the date
@@ -59,4 +61,4 @@ const formatDate = (date) => {
 
   // Combine both date and time
   return `${formattedDate} | ${formattedTime}`;
-};
+}

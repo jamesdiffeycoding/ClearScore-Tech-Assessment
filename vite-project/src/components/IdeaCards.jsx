@@ -1,11 +1,13 @@
 import "./IdeaCards.css";
 import { useState, useEffect } from "react";
-import { DUMMY_DATA, formatDate } from "../helpers.js";
+import { DUMMY_IDEA_DATA, formatDateForDisplay } from "../helpers.js";
 import IdeaCardSortBtns from "./IdeaCardSortBtns.jsx";
 
 export default function IdeaCards() {
   /* ========== CONSTS FOR DATA RELATED TO CHARACTER LIMITS ========== */
   // hard-coded character limits for title and details
+
+  console.log(formatDateForDisplay("2024-07-01T00:15:00"));
   const CHAR_LENGTH_LIMITS = {
     TITLE: { MAX: 50, WARNING: 43 },
     DETAILS: { MAX: 140, WARNING: 110 },
@@ -45,23 +47,23 @@ export default function IdeaCards() {
   /* =============================================================== */
   /* ======================== USE EFFECTS ========================== */
 
-  // local storage useEffect to load previous or dummy data
+  // local storage useEffect to load previous or dummy data on page load
   useEffect(() => {
     const locallyStoredIdeas = localStorage.getItem("sortedIdeas");
     if (locallyStoredIdeas) {
       setSortedIdeas(JSON.parse(locallyStoredIdeas));
     } else {
-      setSortedIdeas(DUMMY_DATA);
+      setSortedIdeas(DUMMY_IDEA_DATA);
     }
   }, []);
 
-  // local storage useEffect to save data whenever changes are made
+  // local storage useEffect to save data whenever changes are made to sortedIdeas
   useEffect(() => {
     localStorage.setItem("sortedIdeas", JSON.stringify(sortedIdeas));
   }, [sortedIdeas]);
 
   // char limit useEffects -------------------------
-  // update titleLengthClass
+  // update titleLengthClass based on current edited title length
   useEffect(() => {
     if (editedInfo.title.length > CHAR_LENGTH_LIMITS.TITLE.MAX) {
       setEditedInfoLengthClasses((prev) => ({
@@ -81,7 +83,7 @@ export default function IdeaCards() {
     }
   }, [editedInfo.title]);
 
-  // update detailsLengthClass
+  // update detailsLengthClass based on current edit details length
   useEffect(() => {
     if (editedInfo.details.length > CHAR_LENGTH_LIMITS.DETAILS.MAX) {
       setEditedInfoLengthClasses((prev) => ({
@@ -103,7 +105,7 @@ export default function IdeaCards() {
     }
   }, [editedInfo.details]);
 
-  // update lengthsAreValid
+  // update lengthsAreValid based on current title and detail
   useEffect(() => {
     setlengthsAreValid(
       editedInfoLengthClasses.title !== CHAR_LIMIT_CLASSES.SURPASSED &&
@@ -175,36 +177,36 @@ export default function IdeaCards() {
 
   /* ============================================================== */
   /* ===================== SORT FUNCTION ========================= */
-  function sortIdeasByTagAndDirection(criteria, isAscending) {
-    // copy sortedIdeas array
+  function sortIdeas(criteria, reverseOrder) {
+    // Copy sortedIdeas array
     const sortedIdeasCopy = [...sortedIdeas];
+
+    // Use a switch to decide the sorting logic
     switch (criteria) {
       case "createdAt":
-        sortedIdeasCopy.sort((a, b) => {
-          return isAscending
-            ? new Date(b.createdAt) - new Date(a.createdAt)
-            : new Date(a.createdAt) - new Date(b.createdAt);
-        });
+        sortedIdeasCopy.sort(
+          (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+        );
         break;
       case "lastUpdated":
-        sortedIdeasCopy.sort((a, b) => {
-          console.log(a.lastUpdated - b.lastUpdated);
-          return isAscending
-            ? new Date(b.lastUpdated) - new Date(a.lastUpdated)
-            : new Date(a.lastUpdated) - new Date(b.lastUpdated);
-        });
+        sortedIdeasCopy.sort(
+          (a, b) => new Date(a.lastUpdated) - new Date(b.lastUpdated)
+        );
         break;
       case "title":
-        sortedIdeasCopy.sort((a, b) => {
-          return isAscending
-            ? a.title.localeCompare(b.title)
-            : b.title.localeCompare(a.title);
-        });
+        sortedIdeasCopy.sort((a, b) => b.title.localeCompare(a.title));
         break;
       default:
         return sortedIdeasCopy;
     }
-    setSortedIdeas(sortedIdeasCopy);
+
+    // Reverse the order if reverseOrder is false
+    if (reverseOrder) {
+      setSortedIdeas(sortedIdeasCopy.reverse());
+    } else {
+      // Update sortedIdeas
+      setSortedIdeas(sortedIdeasCopy);
+    }
   }
 
   /* ============================================================== */
@@ -272,15 +274,13 @@ export default function IdeaCards() {
   /* ======================== RENDERING ============================ */
   return (
     <>
-      <IdeaCardSortBtns
-        sortIdeasByTagAndDirection={sortIdeasByTagAndDirection}
-      />
+      <IdeaCardSortBtns sortIdeas={sortIdeas} />
       <section className="cards-container">
         {sortedIdeas.map((storedIdea, currentCardIndex) => (
           <div className="card" key={storedIdea.id}>
             <section className="card-dates">
-              <div>Created: {formatDate(storedIdea.createdAt)}</div>
-              <div>Updated: {formatDate(storedIdea.lastUpdated)}</div>
+              <div>Created: {formatDateForDisplay(storedIdea.createdAt)}</div>
+              <div>Updated: {formatDateForDisplay(storedIdea.lastUpdated)}</div>
             </section>
 
             {indexBeingEdited === currentCardIndex ? (

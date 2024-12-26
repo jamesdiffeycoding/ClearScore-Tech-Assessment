@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./IdeaCardSortBtns.css"; // Assuming you're creating a separate CSS file
 
-export default function IdeaCardSortBtns({ sortIdeasByTagAndDirection }) {
+export default function IdeaCardSortBtns({ sortIdeas }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
@@ -14,7 +14,7 @@ export default function IdeaCardSortBtns({ sortIdeasByTagAndDirection }) {
           <li>
             <button
               onClick={() => {
-                sortIdeasByTagAndDirection("createdAt", true);
+                sortIdeas("createdAt", true);
                 toggleDropdown(); // Close the dropdown after clicking
               }}
             >
@@ -25,7 +25,7 @@ export default function IdeaCardSortBtns({ sortIdeasByTagAndDirection }) {
           <li>
             <button
               onClick={() => {
-                sortIdeasByTagAndDirection("createdAt", false);
+                sortIdeas("createdAt", false);
                 toggleDropdown(); // Close the dropdown after clicking
               }}
             >
@@ -36,7 +36,7 @@ export default function IdeaCardSortBtns({ sortIdeasByTagAndDirection }) {
           <li>
             <button
               onClick={() => {
-                sortIdeasByTagAndDirection("lastUpdated", true);
+                sortIdeas("lastUpdated", true);
                 toggleDropdown(); // Close the dropdown after clicking
               }}
             >
@@ -47,7 +47,7 @@ export default function IdeaCardSortBtns({ sortIdeasByTagAndDirection }) {
           <li>
             <button
               onClick={() => {
-                sortIdeasByTagAndDirection("lastUpdated", false);
+                sortIdeas("lastUpdated", false);
                 toggleDropdown(); // Close the dropdown after clicking
               }}
             >
@@ -58,7 +58,7 @@ export default function IdeaCardSortBtns({ sortIdeasByTagAndDirection }) {
           <li>
             <button
               onClick={() => {
-                sortIdeasByTagAndDirection("title", true);
+                sortIdeas("title", true);
                 toggleDropdown(); // Close the dropdown after clicking
               }}
             >
@@ -69,7 +69,7 @@ export default function IdeaCardSortBtns({ sortIdeasByTagAndDirection }) {
           <li>
             <button
               onClick={() => {
-                sortIdeasByTagAndDirection("title", false);
+                sortIdeas("title", false);
                 toggleDropdown(); // Close the dropdown after clicking
               }}
             >

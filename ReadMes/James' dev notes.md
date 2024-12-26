@@ -49,3 +49,18 @@ Keeping the code clean / maintainable
 # Questions:
 
 - what is procedural programming?
+
+# Testing:
+
+- testing is used in applications to make sure software works as it should.
+- you want to make sure that changes you make does not break functionality.
+- having an automated testing suite can give you assurance of everything working well for you and your clients, without requiring a lot of work
+- there are many layers of testing;
+  --- unit testing (quick and easy, low coverage, easy to be plentiful)
+  --- component/integration testing (relatively hard and slow, good coverage)
+  --- end to end testing (slow, great coverage, only need a few - dont show you where the issue occurs)
+- Cypress can provide in-browser unit / componenttesting
+- Vitest can provide Unit testing (headless)
+  --- Vitest can support partially implemented browser environments like jsdom; but there are limitations (e.g. no accesss to window.navigation)
+- a combination of Cypress and Vitest is recommended by Vitest themselves: https://vitest.dev/guide/comparisons
+-
