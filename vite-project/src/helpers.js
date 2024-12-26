@@ -1,6 +1,6 @@
-export { DUMMY_IDEA_DATA, formatDateForDisplay, dateAndTimeXMinutesAgo };
+export { DUMMY_IDEA_DATA, formatDateForDisplay, dateXMinutesAgo };
 
-function dateAndTimeXMinutesAgo(minutesAgo) {
+function dateXMinutesAgo(minutesAgo) {
   let currentDate = new Date();
   currentDate.setMinutes(currentDate.getMinutes() - minutesAgo);
   return currentDate;
@@ -12,24 +12,24 @@ const DUMMY_IDEA_DATA = [
     title: "Click the plus icon to add a new idea!",
     details: "Let those good ideas find a place.",
     editing: false,
-    createdAt: dateAndTimeXMinutesAgo(3),
-    lastUpdated: dateAndTimeXMinutesAgo(3),
+    createdAt: dateXMinutesAgo(3),
+    lastUpdated: dateXMinutesAgo(3),
   },
   {
     id: 1,
     title: "Click the pencil to edit, or bin to delete cards!",
     details: "It is normal to have second thoughts!",
     editing: false,
-    createdAt: dateAndTimeXMinutesAgo(2),
-    lastUpdated: dateAndTimeXMinutesAgo(2),
+    createdAt: dateXMinutesAgo(2),
+    lastUpdated: dateXMinutesAgo(2),
   },
   {
     id: 2,
     title: "Sort the cards by their date or title!",
     details: "Or don't. It's your choice.",
     editing: false,
-    createdAt: dateAndTimeXMinutesAgo(1),
-    lastUpdated: dateAndTimeXMinutesAgo(1),
+    createdAt: dateXMinutesAgo(1),
+    lastUpdated: dateXMinutesAgo(1),
   },
 ];
 

@@ -4,7 +4,7 @@ import { expect, expectTypeOf, test } from "vitest";
 import {
   DUMMY_IDEA_DATA,
   formatDateForDisplay,
-  dateAndTimeXMinutesAgo,
+  dateXMinutesAgo,
 } from "./src/helpers.js";
 
 test("TRUTHY EXAMPLE", () => {
@@ -30,7 +30,7 @@ test("formatDateForDisplay function", () => {
   expect(formatDateForDisplay("")).toBe(""); // Empty string should return an empty string
 });
 
-test("dateAndTimeXMinutesAgo function", () => {
-  expect(dateAndTimeXMinutesAgo(0).toString()).toBe(new Date().toString());
-  expect(dateAndTimeXMinutesAgo(-5).toString()).not.toBe(new Date().toString()); // a time 5 minutes ago should not be the same as the current time
+test("dateXMinutesAgo function", () => {
+  expect(dateXMinutesAgo(0).toString()).toBe(new Date().toString());
+  expect(dateXMinutesAgo(-5).toString()).not.toBe(new Date().toString()); // a time 5 minutes ago should not be the same as the current time
 });

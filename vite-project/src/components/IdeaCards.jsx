@@ -6,8 +6,6 @@ import IdeaCardSortBtns from "./IdeaCardSortBtns.jsx";
 export default function IdeaCards() {
   /* ========== CONSTS FOR DATA RELATED TO CHARACTER LIMITS ========== */
   // hard-coded character limits for title and details
-
-  console.log(formatDateForDisplay("2024-07-01T00:15:00"));
   const CHAR_LENGTH_LIMITS = {
     TITLE: { MAX: 50, WARNING: 43 },
     DETAILS: { MAX: 140, WARNING: 110 },
