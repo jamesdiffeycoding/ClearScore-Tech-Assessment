@@ -2,16 +2,16 @@
 
 @font-face {
   font-family: "ClearScore Font";
-  src: url("/public/fonts/cs-clarity-regular.woff2") format("woff2"),
-    url("/public/fonts/cs-clarity-regular.ttf") format("truetype");
+  src: url("/fonts/clearscore-clarity-regular.woff2") format("woff2"),
+    url("/fonts/clearscore-clarity-regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "ClearScore Thin";
-  src: url("/public/fonts/cs-clarity-thin.woff2") format("woff2"),
-    url("/public/fonts/cs-clarity-thin.ttf") format("truetype");
+  src: url("/fonts/clearscore-clarity-thin.woff2") format("woff2"),
+    url("/fonts/clearscore-clarity-thin.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }

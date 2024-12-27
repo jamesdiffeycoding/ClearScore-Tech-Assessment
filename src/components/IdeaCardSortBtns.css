@@ -1,4 +1,3 @@
-/* Container for the dropdown button */
 .dropdown-container {
   position: relative;
   margin: 2rem;
@@ -7,14 +6,13 @@
   background-color: #4f3eae;
   border-top-right-radius: 0.5rem;
   border-top-left-radius: 0.5rem;
-  cursor: pointer;
 }
 
 .dropdown-container:hover {
+  cursor: pointer;
   background-color: #6e5fc1;
 }
 
-/* The button to open/close the dropdown */
 .dropdown-toggle {
   background-color: transparent;
   color: white;
@@ -22,9 +20,9 @@
   border: none;
   border-radius: 4px;
   font-size: 16px;
+  cursor: pointer;
 }
 
-/* The dropdown menu (hidden by default) */
 .dropdown-menu {
   position: absolute;
   top: 100%;
@@ -39,7 +37,6 @@
   z-index: 1000;
 }
 
-/* Dropdown items (buttons) */
 .dropdown-menu li {
   padding: 8px 20px;
 }
@@ -59,7 +56,6 @@
   background-color: #f1f1f1;
 }
 
-/* Text styling */
 .bold-text {
   font-weight: bold;
 }

@@ -1,12 +1,4 @@
-export { DUMMY_IDEA_DATA, formatDateForDisplay, dateXMinutesAgo };
-
-function dateXMinutesAgo(minutesAgo) {
-  let currentDate = new Date();
-  currentDate.setMinutes(currentDate.getMinutes() - minutesAgo);
-  return currentDate;
-}
-
-const DUMMY_IDEA_DATA = [
+export const DUMMY_IDEA_DATA = [
   {
     id: 0,
     title: "Click the plus icon to add a new idea!",
@@ -33,7 +25,12 @@ const DUMMY_IDEA_DATA = [
   },
 ];
 
-function formatDateForDisplay(date) {
+export function dateXMinutesAgo(minutesAgo) {
+  let currentDate = new Date();
+  currentDate.setMinutes(currentDate.getMinutes() - minutesAgo);
+  return currentDate;
+}
+export function formatDateForDisplay(date) {
   if (date === "") return "";
 
   // Define the options for formatting the date

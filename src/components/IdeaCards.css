@@ -1,9 +1,11 @@
-/* Layout & Positioning ----------------------------------- */
 .cards-container {
   display: grid;
   width: 100%;
-  max-width: 1000px;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(250px, 1fr)
+  ); /* squeezes maximum number of 250px + columns onto page */
+  max-width: 1000px; /* limits max number of columns to 3 with grid-template-columns */
   gap: 1rem;
 }
 
@@ -21,7 +23,6 @@
   height: 100%;
 }
 
-/* Background, Color, Border -------------------------------- */
 .card {
   border: 1px solid #341bbe;
   background-color: #dcd7fb;
@@ -49,6 +50,7 @@
 }
 
 .textarea-title {
+  all: unset;
   font-size: 1.2rem;
   color: #341bbe;
   text-align: left;
@@ -56,24 +58,24 @@
   padding-bottom: 1rem;
   width: 100%;
   border-radius: 0.5rem;
-  min-height: 5rem;
+  height: auto;
   resize: none;
-  resize: vertical;
+  max-width: 100%;
 }
 
 .textarea-details {
+  all: unset;
   font-size: 0.8rem;
   color: rgb(80, 80, 80);
   text-align: left;
   padding-bottom: 1rem;
   width: 100%;
   border-radius: 0.5rem;
-  min-height: 15rem;
   resize: none;
-  resize: vertical;
+  word-wrap: break-word; /* Prevents long words causing horizontal scroll bar */
 }
 
-.character-limit-surpassed {
+.char-limit-surpassed {
   font-weight: bolder;
   font-size: 1.2rem;
   color: rgb(171, 24, 24);
@@ -83,7 +85,7 @@
   margin-bottom: 0.5rem;
 }
 
-.character-limit-close {
+.char-limit-close {
   font-size: 1rem;
   color: rgb(131, 119, 34);
   text-align: right;
@@ -92,7 +94,7 @@
   margin-bottom: 0.5rem;
 }
 
-.character-limit-ok {
+.char-limit-ok {
   font-size: 0.75rem;
   color: green;
   text-align: right;
@@ -108,7 +110,6 @@
   margin-bottom: 0.5rem;
 }
 
-/* Buttons --------------------------------------------------- */
 .btn {
   all: unset; /* Removes all default styling */
   cursor: pointer;
@@ -145,10 +146,9 @@
   background-color: #38d47e;
 }
 
-/* Create Card Container ------------------------------------- */
 .create-outline {
   background-color: #7b428d;
-  font-size: 4rem;
+  font-size: 1rem;
   font-weight: bold;
   border-radius: 1rem;
   cursor: pointer;
@@ -158,6 +158,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 3rem 3rem; /* margin preserves spacing when create-btn is on new grid line */
 }
 
 .create-btn {

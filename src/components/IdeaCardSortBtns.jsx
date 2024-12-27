@@ -15,66 +15,60 @@ export default function IdeaCardSortBtns({ sortIdeas }) {
             <button
               onClick={() => {
                 sortIdeas("createdAt", true);
-                toggleDropdown(); // Close the dropdown after clicking
+                toggleDropdown();
               }}
             >
-              <span className="bold-text">Created</span>
-              <span className="italic-text"> (recent first)</span>
+              <span className="bold-text">Creation date /\</span>
             </button>
           </li>
           <li>
             <button
               onClick={() => {
                 sortIdeas("createdAt", false);
-                toggleDropdown(); // Close the dropdown after clicking
+                toggleDropdown();
               }}
             >
-              <span className="bold-text">-</span>
-              <span className="italic-text"> (oldest first)</span>
+              <span className="bold-text">Creation date \/</span>
             </button>
           </li>
           <li>
             <button
               onClick={() => {
                 sortIdeas("lastUpdated", true);
-                toggleDropdown(); // Close the dropdown after clicking
+                toggleDropdown();
               }}
             >
-              <span className="bold-text">Updated</span>
-              <span className="italic-text"> (recent first)</span>
+              <span className="bold-text">Last updated /\</span>
             </button>
           </li>
           <li>
             <button
               onClick={() => {
                 sortIdeas("lastUpdated", false);
-                toggleDropdown(); // Close the dropdown after clicking
+                toggleDropdown();
               }}
             >
-              <span className="bold-text">-</span>
-              <span className="italic-text"> (oldest first)</span>
+              <span className="bold-text">Last updated \/</span>
             </button>
           </li>
           <li>
             <button
               onClick={() => {
                 sortIdeas("title", true);
-                toggleDropdown(); // Close the dropdown after clicking
+                toggleDropdown();
               }}
             >
-              <span className="bold-text">Title</span>
-              <span className="italic-text"> (A - Z)</span>
+              <span className="bold-text">Title (A-Z)</span>
             </button>
           </li>
           <li>
             <button
               onClick={() => {
                 sortIdeas("title", false);
-                toggleDropdown(); // Close the dropdown after clicking
+                toggleDropdown();
               }}
             >
-              <span className="bold-text">-</span>
-              <span className="italic-text"> (Z - A)</span>
+              <span className="bold-text">Title (Z-A)</span>
             </button>
           </li>
         </ul>
