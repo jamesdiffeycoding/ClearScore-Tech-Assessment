@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Global styles */
 
 @font-face {
@@ -9,9 +13,9 @@
 }
 
 @font-face {
-  font-family: "ClearScore Thin";
-  src: url("/fonts/clearscore-clarity-thin.woff2") format("woff2"),
-    url("/fonts/clearscore-clarity-thin.ttf") format("truetype");
+  font-family: "ClearScore Bold";
+  src: url("/fonts/clearscore-clarity-bold.woff2") format("woff2"),
+    url("/fonts/clearscore-clarity-bold.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -23,5 +27,5 @@ body {
 }
 
 header {
-  font-family: "ClearScore Thin", sans-serif;
+  font-family: "ClearScore Bold", sans-serif;
 }

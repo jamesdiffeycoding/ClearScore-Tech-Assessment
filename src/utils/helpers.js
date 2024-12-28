@@ -1,6 +1,8 @@
+import { v4 as uuidv4 } from "uuid";
+
 export const DUMMY_IDEA_DATA = [
   {
-    id: 0,
+    uuid: uuidv4(),
     title: "Click the plus icon to add a new idea!",
     details: "Let those good ideas find a place.",
     editing: false,
@@ -8,7 +10,7 @@ export const DUMMY_IDEA_DATA = [
     lastUpdated: dateXMinutesAgo(3),
   },
   {
-    id: 1,
+    uuid: uuidv4(),
     title: "Click the pencil to edit, or bin to delete cards!",
     details: "It is normal to have second thoughts!",
     editing: false,
@@ -16,7 +18,7 @@ export const DUMMY_IDEA_DATA = [
     lastUpdated: dateXMinutesAgo(2),
   },
   {
-    id: 2,
+    uuid: uuidv4(),
     title: "Sort the cards by their date or title!",
     details: "Or don't. It's your choice.",
     editing: false,
@@ -32,30 +34,18 @@ export function dateXMinutesAgo(minutesAgo) {
 }
 export function formatDateForDisplay(date) {
   if (date === "") return "";
-
-  // Define the options for formatting the date
   const dateOptions = {
     year: "numeric",
-    month: "long",
+    month: "short",
     day: "numeric",
   };
-
-  // Define the options for formatting the time
   const timeOptions = {
     hour: "2-digit",
     minute: "2-digit",
-    hour12: true, // Use 12-hour format (AM/PM)
+    hour12: true, // true gives AM/PM
   };
-
-  // Create a new Date object from the input date
   const dateObj = new Date(date);
-
-  // Format the date part
   const formattedDate = dateObj.toLocaleDateString(undefined, dateOptions);
-
-  // Format the time part
   const formattedTime = dateObj.toLocaleTimeString(undefined, timeOptions);
-
-  // Combine both date and time
-  return `${formattedDate} | ${formattedTime}`;
+  return `${formattedTime}-${formattedDate}`;
 }
