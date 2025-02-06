@@ -17,7 +17,7 @@ const LENGTH_CLASSES = {
 
 export default function App() {
   const [sortedIdeas, setSortedIdeas] = useState([]);
-  const [cardClickedUuid, setCardClickedUuid] = useState(""); /* state: UUIDs*/
+  const [cardClickedUuid, setCardClickedUuid] = useState("");
   const currentIdea = cardClickedUuid
     ? sortedIdeas.find((idea) => idea.uuid === cardClickedUuid)
     : null;
