@@ -42,7 +42,7 @@ export function formatDateForDisplay(date) {
   const timeOptions = {
     hour: "2-digit",
     minute: "2-digit",
-    hour12: true, // true gives AM/PM
+    hour12: true, 
   };
   const dateObj = new Date(date);
   const formattedDate = dateObj.toLocaleDateString(undefined, dateOptions);
