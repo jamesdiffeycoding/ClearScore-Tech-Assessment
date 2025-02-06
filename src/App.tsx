@@ -41,7 +41,7 @@ export default function App() {
             ? LENGTH_CLASSES.warning
             : LENGTH_CLASSES.ok,
       }
-    : {}; // Return an empty object if no idea is selected
+    : {}; 
 
   useEffect(() => {
     const locallyStoredIdeas = localStorage.getItem("sortedIdeas");
