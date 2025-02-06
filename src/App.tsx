@@ -27,9 +27,6 @@ export default function App() {
     true,
   ];
 
-  const listClasses =
-    "h-full m-2 rounded-md flex justify-center items-center p-1";
-
   const editedInfoLengthClasses = currentIdea
     ? {
         title:
@@ -79,7 +76,6 @@ export default function App() {
   }
 
   function handleChange(e, uuid, section) {
-    // ensure new value is within char limits
     let newValue = e.target.value.slice(0, LENGTH_LIMIT[section].max);
     const updatedArray = sortedIdeas.map((idea) => {
       if (idea.uuid === uuid) {
@@ -132,7 +128,6 @@ export default function App() {
           <section className="flex justify-center">
             <div className="max-w-[1000px]">
               <BtnBar
-                listClasses={listClasses}
                 lastSort={lastSort}
                 sortIdeas={sortIdeas}
                 createNewIdea={createNewIdea}
