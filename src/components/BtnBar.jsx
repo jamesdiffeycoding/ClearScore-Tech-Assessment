@@ -1,7 +1,6 @@
 import SortBtn from "./SortBtn";
 
 export default function IdeaCardTopBtns({
-  listClasses,
   lastSort,
   sortIdeas,
   createNewIdea,
@@ -13,7 +12,6 @@ export default function IdeaCardTopBtns({
       </li>
       <SortBtn
         label="Newest"
-        listClasses={listClasses}
         lastSort={lastSort}
         sortIdeas={sortIdeas}
         filter={"createdAt"}
@@ -21,7 +19,6 @@ export default function IdeaCardTopBtns({
       />
       <SortBtn
         label="Oldest"
-        listClasses={listClasses}
         lastSort={lastSort}
         sortIdeas={sortIdeas}
         filter={"createdAt"}
@@ -29,7 +26,6 @@ export default function IdeaCardTopBtns({
       />
       <SortBtn
         label="Update time"
-        listClasses={listClasses}
         lastSort={lastSort}
         sortIdeas={sortIdeas}
         filter={"lastUpdated"}
@@ -37,7 +33,6 @@ export default function IdeaCardTopBtns({
       />
       <SortBtn
         label="Updated long ago"
-        listClasses={listClasses}
         lastSort={lastSort}
         sortIdeas={sortIdeas}
         filter={"lastUpdated"}
@@ -45,7 +40,6 @@ export default function IdeaCardTopBtns({
       />
       <SortBtn
         label="Title (A-Z)"
-        listClasses={listClasses}
         lastSort={lastSort}
         sortIdeas={sortIdeas}
         filter={"title"}
@@ -53,7 +47,6 @@ export default function IdeaCardTopBtns({
       />
       <SortBtn
         label="Title (Z-A)"
-        listClasses={listClasses}
         lastSort={lastSort}
         sortIdeas={sortIdeas}
         filter={"title"}
